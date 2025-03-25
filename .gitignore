@@ -1,0 +1,14 @@
+# Ignore everything ...
+*
+
+# .. but theese
+!.gitignore
+!*.7z
+!*/
+!*.ipynb
+!*.py
+!*.csv
+!*.wav
+!*.pkl
+
+
