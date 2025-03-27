@@ -4,6 +4,7 @@
 # .. but theese
 !.gitignore
 !*.7z
+!*.txt
 !*/
 !*.ipynb
 !*.py
