@@ -8,7 +8,7 @@
 !*.ipynb
 !*.py
 !*.csv
-!*.wav
+!StreamLit/*.wav
 !*.pkl
 
 
