@@ -13,7 +13,7 @@ def get_spectrogram(data, type="MEL", NFFT=512, NHOP=126):
         sr=16000,
         n_fft=NFFT,
         hop_length=NHOP,
-        n_mels=28,
+        n_mels=32,#28,
         fmin=10,
         fmax=8000,
     )

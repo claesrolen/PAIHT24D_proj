@@ -8,7 +8,10 @@
 !*/
 !*.ipynb
 !*.py
+!*.md
 !*.csv
+!DOC/*.png
+!DOC/*.drawio
 !StreamLit/*.wav
 !*.pkl
 

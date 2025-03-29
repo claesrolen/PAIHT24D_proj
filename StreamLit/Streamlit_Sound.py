@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 plt.rcParams["axes.xmargin"] = 0
+import sys
+sys.path.append("./..")
 from utils import get_spectrogram, plot_spectrogram, plot_eval
 
 @st.cache_data
