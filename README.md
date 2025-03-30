@@ -6,7 +6,7 @@ My project will focus on detecting shooting events in public areas and give an e
 An imagined scenario is that you have a network of always on detectors (EdgeAI) that detect events and send alerts to the main system/network. The system may then order the device to start streaming audio and/or video from that area.
 There are already systems available on the market (but large, expensive and complex) e.g [ShotSpotter](https://www.soundthinking.com/law-enforcement/leading-gunshot-detection-system/) 
 
-In this project I will test using both Random Forest Classifier aswell as a Fully Convolutional Neural Network. Since the goal is to deploy the model in an EdgeAI we need to keep the model reasonally small to cope with the memory and performance limits of a microprocessor. The model will be quantized and pruned using TinyML - Tensorflow Lite Micro
+In this project I will test using both Random Forest Classifier aswell as a Fully Convolutional Neural Network. Since the goal is to deploy the model in an EdgeAI we need to keep the model reasonally small to cope with the memory and performance limits of a microprocessor. The model will be optimized using TinyML and deployed via Tensorflow Lite Micro
 
 ---
 ## Exploratory Data Analysis
