@@ -6,24 +6,24 @@ import librosa
 
 def get_spectrogram(data, type="MEL", NFFT=512, NHOP=126):
     window = np.hanning(NFFT)
+    S = np.abs(librosa.stft(data, n_fft=NFFT, hop_length=NHOP, window=window))
 
-    D = librosa.stft(data, n_fft=NFFT, hop_length=NHOP, window=window)
-    MS = librosa.feature.melspectrogram(
-        S=np.abs(D),
-        sr=16000,
-        n_fft=NFFT,
-        hop_length=NHOP,
-        n_mels=32,#28,
-        fmin=10,
-        fmax=8000,
-    )
-    # return librosa.power_to_db(MS, ref=np.max)
-    return 20 * np.log10(MS + 0.00001) # Use dBFS
+    if type == "MEL":
+        S = librosa.feature.melspectrogram(
+            S=S,
+            sr=16000,
+            n_fft=NFFT,
+            hop_length=NHOP,
+            n_mels=32,
+            fmin=10,
+            fmax=8000,
+        )
+    return 20 * np.log10(S + 0.00001)  # Use dBFS
 
 
 def plot_spectrogram(spectrogram, ax):
     cc = ax.imshow(spectrogram, origin="lower", aspect="auto", cmap="coolwarm")
-    ax.set_title("Spectrogram")
+    ax.set_title("Mel Spectrogram")
 
 
 def plot_eval(history):

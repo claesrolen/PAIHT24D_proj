@@ -7,8 +7,10 @@ import tensorflow as tf
 
 plt.rcParams["axes.xmargin"] = 0
 import sys
+
 sys.path.append("./..")
 from utils import get_spectrogram, plot_spectrogram, plot_eval
+
 
 @st.cache_data
 def getModel():
@@ -33,20 +35,19 @@ def main_loop():
         "Input file",
         (
             "city_2_shot_scene.wav",
-            "falling_down_scene.wav",
+            "safe_house_scene.wav",
+            "matrix_scene.wav",
             "lethal_weapon_scene.wav",
             "miami_street.wav",
-            "oneshot_collection_highpass_filter.wav",
-            "oneshot_collection.wav",
-            "parking_echo.wav",
             "parking.wav",
+            "garage_echo.wav",
             "police_arrest.wav",
             "public_area_1.wav",
             "public_area_2.wav",
             "street.wav",
         ),
     )
-    
+
     sr_in0 = librosa.get_samplerate(fname)
     data, sr_in = librosa.load(fname, sr=sr_in0, mono=True)
     data = librosa.resample(data, orig_sr=sr_in, target_sr=16000)
