@@ -16,7 +16,9 @@ In this project I will test using both Random Forest Classifier aswell as a Full
 
 ##### Understanding gunshot characteristics
 The typical characteristics of a shotgun sound is basically the same for all type of guns. It depends mainly on the mechanics and the discharge. When the bullet leaves the pipe it generates a shock impulse followed by the muzzle blast.
+
 ![image info](./DOC/shock_and_blast.png)
+
 It is thereafter followed by reflections/reverbations by the surronding and hence depends heavily on the soundscape present. The sound also varies with distance and angular offset from the shooting direction. In other words, it is a challenging classification problem.
 
 ##### Environmental sound characteristics
@@ -33,6 +35,7 @@ A sample rate of 16kHz and dataformat 16 bits is common and will catch the essen
 To annotate the data and split it to the right buffersize an [annotation](./DATA/annotate.py) tool was created. It takes a large .wav file and splits it into chunks of the wanted format.  
 
  ![image info](./DOC/annotater.png)
+
  Every chunk is exported as a new .wav file and a .csv file is also generated with tags for each buffer start (convenient if one would like to change e.g the buffer length).
 ```
 gundata/AK-12/3 (20).wav,566,4616,9879,15219,20405,25513
@@ -113,6 +116,7 @@ Since we want to detect all possible gunshot events we will allow us to be "easy
 ![](./DOC/rf_prec_rec.png)
 
 #### ROC/AUC
+
 ![](./DOC/roc_auc.png)
 
 The neural network outperforms the random forest and is selected (even if the random forest shows really good result).
