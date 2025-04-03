@@ -52,11 +52,17 @@ In the application we don't know how the Mel spectrum buffer will overlap with t
 - public areas, busstation, subway, harbor, arenas
 - nature/parks - forest, meadow
 - sounds expected to be hard to classify as negative: applause, fireworks
+
+![image info](./DOC/tsne.png)
+
 ---
 ## Feature selection
 
 #### Mel spectrogram
 The Mel spectrogram is the most commonly used feature in audio classification, there are other methods used such as SFFT, wavelets, MFCC, Harmonic Percussive Signal Separation.
+
+![FCN](./DOC/mel_feature.png)
+
 
 #### Augmentations
 The Mel spectrogram is a two-dimensional matrix with frequency and time as axes. This is treated as an image and may be used in architectures used for image classifications. One difference is that a spectrogram may NOT be augmented like an image would.
@@ -74,7 +80,9 @@ A simple Random Forest model was selected and tuned with a grid search method to
 #### Fully Convolutional Neural Network
 
 A simple convolutional neural network is used:
+
 ![FCN](./DOC/model_fcn.png)
+
 All layers are convolutional to make it independent of the input audio buffer size. However, deploying it in a EdgeAI using *Tensorflow Lite Micro* would demand fully connected classification layers. 
 The network parameters:
  - train-val-test ratio *80/10/10*
@@ -85,8 +93,34 @@ The network parameters:
  - Adam's optimizer with adaptive learing rate
  - early stopping based on validation loss 
 
+![](./DOC/fcn_train.png)
+
 The model is finally post-training optimized for EdgeAI implementation with weights and tensors quantization set to 8 bits. Besides giving better execution performance it also reduces the memory usage with up to 75%. This is done using *Tensorflow Lite*  
 
 ---
 ## Result
+  
+Since we want to detect all possible gunshot events we will allow us to be "easy tiggered", that is we will focus on **recall** when optimizing.
+
+#### Confusion matrix
+
+![](./DOC/fcn_conf.png)
+![](./DOC/rf_conf.png)
+
+#### Precision/recall vs threshold
+
+![](./DOC/fcn_prec_rec.png)
+![](./DOC/rf_prec_rec.png)
+
+#### ROC/AUC
+![](./DOC/roc_auc.png)
+
+The neural network outperforms the random forest and is selected (even if the random forest shows really good result).
+The customer can freely set the threshold level to adjust the wanted ratio between precision and recall. In this model we want to favor recall so a suitable threshold level should be just below 0.2 according to the plots above.
+The next step will also show that further optimizations givs a more suitable model for deploying in an EdgeAI unit.
+
 ---
+### TinyML
+Result after quantization
+
+![](./DOC/quant_eval.png)
